@@ -1,11 +1,8 @@
 /*
-Define a class to represent a bank account. Include the following
-data members: Name of the depositor, Account number, type of
-the account, balance amount. Member Functions: To assign initial
-value, to deposit an amount, to withdraw an amount, to display
-name and balance. Write a program to test the class
+Modify the above class for handling 10 customers
 */
 #include<iostream>
+#include<stdlib.h>
 using namespace std;
 class BankAccount{
     string name, type;
@@ -40,11 +37,13 @@ class BankAccount{
 };
 int main()
 {
+    BankAccount* arr = (BankAccount*)malloc(sizeof(BankAccount)*10);
+    for(int i = 0; i < 2; i ++)
+    {
     string name, type;
     long long accno;
     int balance;
     cout << "Enter your name : ";
-    fflush(stdin);
     getline(cin, name);
     cout << "Enter account type : ";
     cin >> type;
@@ -52,18 +51,16 @@ int main()
     cin >> accno;
     cout << "Enter initial balance : ";
     cin >> balance;
-
     BankAccount acc(name, type, accno, balance);
-    acc.disp();
-
+    arr[i] = acc;
+    fflush(stdin);
+    }
+    for(int i = 0; i < 10; i ++){
+        arr[i].disp();
+    }
     return 0;
 }
 // Output
 /*
-Enter your name : Deepak Dash
-Enter account type : Savings
-Enter account number : 121121212
-Enter initial balance : 2000
-Name : Deepak Dash
-Balance : 2000
+This code is tested with clang 9, for some reason I faces problems with latest g++, mingw64
 */
