@@ -37,7 +37,7 @@ class BankAccount{
 };
 int main()
 {
-    BankAccount* arr = (BankAccount*)malloc(sizeof(BankAccount)*10);
+    BankAccount** arr = (BankAccount**)malloc(sizeof(BankAccount*)*10);
     for(int i = 0; i < 2; i ++)
     {
     string name, type;
@@ -51,16 +51,27 @@ int main()
     cin >> accno;
     cout << "Enter initial balance : ";
     cin >> balance;
-    BankAccount acc(name, type, accno, balance);
+    BankAccount* acc = new BankAccount(name, type, accno, balance);
     arr[i] = acc;
     fflush(stdin);
     }
-    for(int i = 0; i < 10; i ++){
-        arr[i].disp();
+    for(int i = 0; i < 2; i ++){
+        arr[i]->disp();
     }
     return 0;
 }
 // Output
 /*
-This code is tested with clang 9, for some reason I faces problems with latest g++, mingw64
+Enter your name : Deepak Dash
+Enter account type : Savings
+Enter account number : 1212
+Enter initial balance : 2000
+Enter your name : Rajat Sahu
+Enter account type : Savings
+Enter account number : 12412
+Enter initial balance : 5000
+Name : Deepak Dash
+Balance : 2000
+Name : Rajat Sahu
+Balance : 5000
 */
